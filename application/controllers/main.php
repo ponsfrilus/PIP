@@ -12,6 +12,8 @@ class Main extends Controller {
 		$user = $this->session_helper->get('user');
 		
 		$template = $this->loadView('main_view');
+		$template->set('title','Welcome to PIP');
+		
 		$template->render();
 	}
 	

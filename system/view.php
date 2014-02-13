@@ -7,6 +7,9 @@ class View {
 
 	public function __construct($template){
 		$this->template = APP_DIR . 'views' . DS . $template .'.php';
+        
+		// Default varaibles in view
+		$this->pageVars['title'] = '';
 	}
 
 	public function set($var, $val){
