@@ -13,6 +13,14 @@ class Main extends Controller {
 		
 		$template = $this->loadView('main_view');
 		$template->set('title','Welcome to PIP');
+		$template->setCSS(array(
+			array("static/css/style.css", "intern"),
+			array("http://www.example.com/default.css", "extern")
+		));
+		$template->setJS(array(
+			array("static/js/index.js", "intern"),
+			array("http://www.example.com/static.js", "extern")
+		));
 		
 		$template->render();
 	}
@@ -34,7 +42,7 @@ class Main extends Controller {
 		$model = $this->loadModel('example_model');
 		$this->render(array('data'=>$model->getCategory()), 'json');
 	}
-    
+
 }
 
 ?>
