@@ -23,6 +23,6 @@ require(ROOT_DIR .'system'. DS .'application.php');
 global $config;
 define('BASE_URL', $config['base_url']);
 
-new pip();
+new Pip();
 
 ?>
