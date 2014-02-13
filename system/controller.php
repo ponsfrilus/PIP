@@ -71,7 +71,7 @@ class Controller {
 			die($_REQUEST['callback'] . '(' . json_encode($response) . ');' );
 		}
 		else{
-			echo $response;
+			die($response);
 		}
 	}
     
