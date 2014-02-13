@@ -1,7 +1,7 @@
 <?php
 
+class Pip {
 
-class pip {
 	private $controller;
 	private $action;
 	private $url;
