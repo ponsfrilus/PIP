@@ -26,6 +26,12 @@ class Main extends Controller {
 			$this->render(array('data'=>array(), 'error'=> $response[1]));	
 		}
 	}
+	
+	function category(){
+		//return ajax json
+		$model = $this->loadModel('example_model');
+		$this->render(array('data'=>$model->getCategory()), 'json');
+	}
     
 }
 
