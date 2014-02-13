@@ -50,10 +50,10 @@ class Model extends PDO{
 			$pdo = $this->prepare($qry);
 			$pdo->execute($params);
 
-			return array(true, $pdo->fetchAll(PDO::FETCH_OBJ));
+			return $pdo->fetchAll(PDO::FETCH_OBJ);
 		}
 		catch(PDOException $e){
-			return array(false, $e->getMessage());
+			return $e->getMessage();
 		}
 
 	}
@@ -62,10 +62,11 @@ class Model extends PDO{
 		try{
 			$pdo = $this->prepare($qry);
 			$pdo->execute($params);
-			return array(true, $pdo->rowCount());
+
+			return $pdo->rowCount();
 		}
 		catch(PDOException $e){
-			return array(false, $e->getMessage());
+			return $e->getMessage();
 		}
 	}
     
