@@ -17,9 +17,9 @@ class Error extends Controller {
 	function error($segments="Error!"){
 		if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 			return json_encode(array(
-				'success' => false, 
+				'success' => false,
 				'data' => array(),
-				'msg'=> utf8_encode($segments)
+				'message'=> utf8_encode($segments)
 			));
 		}
 		else{
