@@ -17,7 +17,7 @@ require(APP_DIR  .'config'. DS .'config.php');
 require(ROOT_DIR .'system'. DS .'model.php');
 require(ROOT_DIR .'system'. DS .'view.php');
 require(ROOT_DIR .'system'. DS .'controller.php');
-require(ROOT_DIR .'system'. DS .'application.php');
+require(ROOT_DIR .'system'. DS .'pip.php');
 
 // Define base URL
 global $config;
