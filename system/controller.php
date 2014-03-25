@@ -34,7 +34,27 @@ class Controller {
 		
 		header('Location: '. $config['base_url'] . $loc);
 	}
-    
+
+	public function render($view = null, $vars = null)
+	{
+		// Check whether to render the default view or a specific view.
+		$viewName = (is_string($view)) ? $viewName : get_class($this);
+		$template = $this->loadView($viewName);
+
+		// Find the vars if they exist.
+		$v = array();
+		if (isset($vars) && is_array($vars))
+		{
+			$v = $vars;
+		}
+		else if (isset($view) && is_array($view))
+		{
+			$v = $view;
+		}
+
+		$template->set($v);
+		$template->render();
+	}
 }
 
 ?>
