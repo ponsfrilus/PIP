@@ -35,6 +35,11 @@ class Controller {
 		header('Location: '. $config['base_url'] . $loc);
 	}
 
+	/*
+		Render a default view (a view with the same name as the controller) or
+		the specified view. If rendering the default view, vars may be passed
+		in via the first argument.
+	*/
 	public function render($view = null, $vars = null)
 	{
 		// Check whether to render the default view or a specific view.
