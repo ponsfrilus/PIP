@@ -12,9 +12,14 @@ class Session_helper {
 		return $_SESSION["$key"];
 	}
 	
-	function hasKey($key)
+	function has($key)
 	{
 		return isset($_SESSION["$key"]);
+	}
+
+	function clear($key)
+	{
+		unset($_SESSION["$key"]);
 	}
 
 	function destroy()
