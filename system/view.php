@@ -10,6 +10,11 @@ class View {
 		$this->template = APP_DIR .'views/'. $template .'.php';
 	}
 
+	/*
+		Set a template var to a specific value. If $var is an array,
+		$val will be ignored and the array will be merged with the
+		current settings.
+	*/
 	public function set($var, $val = null)
 	{
 		if (is_array($var))
