@@ -43,7 +43,7 @@ class Controller {
 	public function render($view = null, $vars = null)
 	{
 		// Check whether to render the default view or a specific view.
-		$viewName = (is_string($view)) ? $viewName : get_class($this);
+		$viewName = (is_string($view)) ? $viewName : strtolower(get_class($this));
 		$template = $this->loadView($viewName);
 
 		// Find the vars if they exist.
