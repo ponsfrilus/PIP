@@ -3,11 +3,13 @@
 class View {
 
 	private $pageVars = array();
-	private $template;
+	private $templatePath;
+	private $templateName;
 
 	public function __construct($template)
 	{
-		$this->template = APP_DIR .'views/'. $template .'.php';
+		$this->templateName = $template;
+		$this->templatePath = APP_DIR .'views/'. $template .'.php';
 	}
 
 	/*
@@ -29,13 +31,19 @@ class View {
 
 	public function render()
 	{
-		extract($this->pageVars);
+		if (file_exists($this->templatePath))
+		{
+			extract($this->pageVars);
 
-		ob_start();
-		require($this->template);
-		echo ob_get_clean();
+			ob_start();
+			require($this->templatePath);
+			echo ob_get_clean();
+		}
+		else
+		{
+			echo "Could not find a view called '".$this->templateName."'!";
+		}
 	}
-    
 }
 
 ?>
