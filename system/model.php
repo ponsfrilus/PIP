@@ -60,20 +60,71 @@ class Model {
     }
 
     /*
+        Returns entries in the database that match the options specified.
+        Options may be:
+            fields => array - array of fields to return
+            field => value - insert a where clause for field = value. If value
+                             is an array the where where clause is an 'in'.
+    */
+    public function find($options = array())
+    {
+        // Extract the fields.
+        $fieldsString = '*';
+        if (isset($options['fields']) &&
+            is_array($options['fields']) &&
+            count($options['fields']) > 0)
+        {
+            $fields = $options['fields'];
+            $fieldsString = implode(',', $fields);
+        }
+        unset($options['fields']);
+
+        // Extract any conditions.
+        $whereString = "";
+        foreach ($options as $field => $value)
+        {
+            if (empty($whereString))
+            {
+                $whereString = "WHERE ";
+            }
+            else
+            {
+                $whereString .= " AND ";
+            }
+
+            $whereString .= "$field ";
+            if (is_array($value))
+            {
+                $whereString .= "IN (";
+                $whereString .= implode(',', $value);
+                $whereString .= ")";
+            }
+            else
+            {
+                if (is_string($value))
+                {
+                    $whereString .= "= '$value'";
+                }
+                else
+                {
+                    $whereString .= "= $value";
+                }
+            }
+        }
+
+        $table = strtolower(get_class($this))."s";
+        $query = "SELECT $fieldsString FROM $table $whereString";
+        return $this->query($query);
+    }
+
+    /*
         Returns all entries in the database for this table. Returns the
         specified fields or all fields if $fields is empty.
     */
     public function findAll($fields = array())
     {
-        $fieldsString = '*';
-        if (count($fields) > 0)
-        {
-            $fieldsString = implode(',', $fields);
-        }
-
-        $table = strtolower(get_class($this))."s";
-        $query = "SELECT $fieldsString FROM $table";
-        return $this->query($query);
+        $options = array('fields' => $fields);
+        return $this->find($options);
     }
 
     /*
