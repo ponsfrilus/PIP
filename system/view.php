@@ -7,18 +7,21 @@ class View {
 	private $css      = array();
 	private $js       = array();
 
-	public function __construct($template){
+	public function __construct($template)
+	{
 		$this->template = APP_DIR . 'views' . DS . $template .'.php';
         
 		// Default varaibles in view
 		$this->pageVars['title'] = '';
 	}
 
-	public function set($var, $val){
+	public function set($var, $val)
+	{
 		$this->pageVars[$var] = $val;
 	}
 
-	public function render(){
+	public function render()
+	{
 		extract($this->pageVars);
 
 		ob_start();
@@ -49,7 +52,6 @@ class View {
 			}
 		}
 	}
-
 }
 
 ?>

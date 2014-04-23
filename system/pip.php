@@ -6,7 +6,8 @@ class Pip {
 	private $action;
 	private $url;
 
-	function __construct(){
+	function __construct()
+	{
 		$segments = $this->startParams();
 		$segments = $this->startActions($segments);
 		
@@ -14,7 +15,8 @@ class Pip {
 		die(call_user_func_array(array($obj, $this->action), array($segments)));
 	}
 
-	function startParams(){
+	function startParams()
+	{
 		global $config;
 
 		$this->controller = $config['default_controller'];
@@ -35,7 +37,8 @@ class Pip {
 		return $segments;
 	}
 
-	function startActions($segments){
+	function startActions($segments)
+	{
 		global $config;
 		
 		$path = APP_DIR . 'controllers' . DS . $this->controller . '.php';

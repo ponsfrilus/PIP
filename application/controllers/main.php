@@ -2,7 +2,8 @@
 
 class Main extends Controller {
 	
-	function __construct(){
+	function __construct()
+	{
 		parent::__construct();
 	}
 	
@@ -25,22 +26,12 @@ class Main extends Controller {
 		$template->render();
 	}
 	
-	function categoryAjax(){
+	function category()
+	{
 		$model = $this->loadModel('example_model');
-		
-		$response = $model->getProjetos();
-		if($response[0] === true){
-			$this->render(array('data'=>$response[1]));
-		}
-		else{
-			$this->render(array('data'=>array(), 'error'=> $response[1]));	
-		}
-	}
-	
-	function category(){
-		//return ajax json
-		$model = $this->loadModel('example_model');
-		$this->render(array('data'=>$model->getCategory()), 'json');
+		$template = $this->loadView('main_view');
+		$template->set('data',$model->getCategory());
+		$template->render();
 	}
 
 }

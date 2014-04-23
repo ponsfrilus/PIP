@@ -4,7 +4,8 @@ class Model extends PDO{
 
 	private $connection;
 
-	public function __construct(){
+	public function __construct()
+	{
 		global $config;
 
 		try{
@@ -19,33 +20,40 @@ class Model extends PDO{
 	}
 
 	//deprecated
-	public function escapeString($string){
+	public function escapeString($string)
+	{
 		return mysql_real_escape_string($string);
 	}
 
 	//deprecated
-	public function escapeArray($array){
+	public function escapeArray($array)
+	{
 	    array_walk_recursive($array, create_function('&$v', '$v = mysql_real_escape_string($v);'));
 		return $array;
 	}
 	
-	public function to_bool($val){
+	public function to_bool($val)
+	{
 	    return !!$val;
 	}
 	
-	public function to_date($val){
+	public function to_date($val)
+	{
 	    return date('Y-m-d', $val);
 	}
 	
-	public function to_time($val){
+	public function to_time($val)
+	{
 	    return date('H:i:s', $val);
 	}
 	
-	public function to_datetime($val){
+	public function to_datetime($val)
+	{
 	    return date('Y-m-d H:i:s', $val);
 	}
 	
-	public function query($qry, $params=array()){
+	public function query($qry, $params=array())
+	{
 		try{
 			$pdo = $this->prepare($qry);
 			$pdo->execute($params);
@@ -58,7 +66,8 @@ class Model extends PDO{
 
 	}
 
-	public function execute($qry, $params=array()){
+	public function execute($qry, $params=array())
+	{
 		try{
 			$pdo = $this->prepare($qry);
 			$pdo->execute($params);

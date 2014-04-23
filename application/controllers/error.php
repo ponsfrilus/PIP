@@ -2,11 +2,13 @@
 
 class Error extends Controller {
 	
-	function index($segments){
+	function index($segments)
+	{
 		return $this->error($this->getMessage($segments));
 	}
 
-	function getMessage($segments){
+	function getMessage($segments)
+	{
 		if(is_array($segments)){
 			$segments = $segments[0];
 		}
@@ -14,7 +16,8 @@ class Error extends Controller {
 		return $segments;
 	}
 
-	function error($segments="Error!"){
+	function error($segments="Error!")
+	{
 		if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 			return json_encode(array(
 				'success' => false,
@@ -22,7 +25,8 @@ class Error extends Controller {
 				'message'=> utf8_encode($segments)
 			));
 		}
-		else{
+		else
+		{
 			return utf8_decode("<h1>{$segments}</h1>");
 		}
 		
