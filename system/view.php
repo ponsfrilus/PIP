@@ -31,18 +31,28 @@ class View {
 
 	public function render()
 	{
+		$result = $this->renderIntoString();
+		echo $result;
+	}
+
+	public function renderIntoString()
+	{
+		$result = "";
+
 		if (file_exists($this->templatePath))
 		{
 			extract($this->pageVars);
 
 			ob_start();
 			require($this->templatePath);
-			echo ob_get_clean();
+			$result = ob_get_clean();
 		}
 		else
 		{
-			echo "Could not find a view called '".$this->templateName."'!";
+			$result = "Could not find a view called '".$this->templateName."'!";
 		}
+
+		return $result;
 	}
 }
 
